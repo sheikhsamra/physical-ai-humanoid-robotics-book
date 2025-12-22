@@ -67,7 +67,7 @@ const config = {
           },
           // Blog link removed from here
           {
-            href: 'https://github.com/Specify/physical-ai-humanoid-robotics-book',
+            href: 'https://github.com/sheikhsamra/physical-ai-humanoid-robotics-book',
             label: 'GitHub',
             position: 'right',
           },
@@ -98,7 +98,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/Specify/physical-ai-humanoid-robotics-book',
+                href: 'https://github.com/sheikhsamra/physical-ai-humanoid-robotics-book',
               },
             ],
           },
