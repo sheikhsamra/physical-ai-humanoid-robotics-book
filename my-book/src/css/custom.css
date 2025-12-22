@@ -1,0 +1,74 @@
+:root {
+  /* Professional Light Neon Palette */
+  --ifm-color-primary: #0088cc; /* Professional Blue */
+  --ifm-color-primary-dark: #007bb8;
+  --ifm-color-primary-darker: #0074ad;
+  --ifm-color-primary-darkest: #005f8f;
+  --ifm-color-primary-light: #0095e0;
+  --ifm-color-primary-lighter: #009ceb;
+  --ifm-color-primary-lightest: #1aa6ff;
+
+  --ifm-color-background: #ffffff;
+  --ifm-color-surface: #f8fafc;
+  
+  /* Banner Gradient for Light Mode */
+  --hero-gradient: linear-gradient(135deg, #0088cc 0%, #00d2ff 100%);
+}
+
+[data-theme='dark'] {
+  /* Deep Space Neon (Cyberpunk Professional) */
+  --ifm-color-primary: #00f2ff; /* Neon Cyan */
+  --ifm-color-primary-dark: #00dae6;
+  --ifm-color-primary-darker: #00ced9;
+  --ifm-color-primary-darkest: #00abb3;
+  --ifm-color-primary-light: #33f5ff;
+  --ifm-color-primary-lighter: #4df7ff;
+  --ifm-color-primary-lightest: #80faff;
+
+  /* Backgrounds */
+  --ifm-color-background: #0b0e14; /* Deep Charcoal */
+  --ifm-color-surface: #161b22;
+  
+  /* Text with slight glow */
+  --ifm-color-text: #e6edf3;
+  --ifm-color-text-secondary: #8b949e;
+
+  /* Banner Gradient for Dark Mode (Neon Glow) */
+  --hero-gradient: linear-gradient(135deg, #0b0e14 0%, #1a1a2e 50%, #00334e 100%);
+  
+  /* Neon Border Effect */
+  --neon-border: 0 0 15px rgba(0, 242, 255, 0.3);
+}
+
+/* --- Hero Banner Style --- */
+.hero--primary {
+  background: var(--hero-gradient) !important;
+  border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional: Adding a subtle glow to buttons in Dark Mode */
+[data-theme='dark'] .button--secondary {
+  box-shadow: var(--neon-border);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+[data-theme='dark'] .button--secondary:hover {
+  box-shadow: 0 0 25px rgba(0, 242, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Hero section ke andar ka sara text force-white karne ke liye */
+.hero--primary {
+  color: #ffffff !important; /* Force white text */
+}
+
+/* Titles aur subtitles ko specific target karein */
+.hero__title, 
+.hero__subtitle {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Isse text aur clear dikhega */
+}
+

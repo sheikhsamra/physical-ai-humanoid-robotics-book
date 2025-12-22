@@ -1,0 +1,88 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 996px) {
+  .buttons {
+    justify-content: center;
+    flex-wrap: wrap; 
+  }
+}
+
+.heroContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 2rem;
+}
+
+.heroText {
+  flex: 1;
+}
+
+.heroImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  animation: float 4s ease-in-out infinite;
+  transition: filter 0.3s ease;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px); 
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+[data-theme='dark'] .bannerImg {
+  filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4));
+  animation: float 4s ease-in-out infinite, neonPulse 3s infinite alternate;
+}
+
+@keyframes neonPulse {
+  from {
+    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 30px rgba(0, 242, 255, 0.7));
+  }
+}
+
+
+@media screen and (max-width: 996px) {
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,0 +1,182 @@
+# Content Contract for Module 2: The Digital Twin (Gazebo & Unity)
+
+# This contract defines the expected structure and content requirements
+# for Module 2 to ensure consistency and compatibility with the RAG system
+
+openapi: 3.0.0
+info:
+  title: Physical AI & Humanoid Robotics - Module 2 Content Contract
+  description: Contract for Module 2 content structure and requirements
+  version: 1.0.0
+
+paths:
+  /module2:
+    get:
+      summary: Get Module 2 metadata
+      responses:
+        '200':
+          description: Module 2 metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+
+  /module2/chapters:
+    get:
+      summary: Get list of all Module 2 chapters
+      responses:
+        '200':
+          description: List of Module 2 chapters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chapter'
+
+  /module2/chapters/{chapterId}:
+    get:
+      summary: Get specific Module 2 chapter content
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Chapter identifier
+      responses:
+        '200':
+          description: Chapter content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+
+components:
+  schemas:
+    Module:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the module
+        title:
+          type: string
+          description: Title of the module
+        description:
+          type: string
+          description: Brief description of the module
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: List of learning objectives
+        chapters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chapter'
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: Prerequisites for this module
+        targetAudience:
+          type: string
+          description: Intended reader profile
+        wordCount:
+          type: integer
+          description: Total word count for the module
+      required:
+        - id
+        - title
+        - description
+        - chapters
+
+    Chapter:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        title:
+          type: string
+          description: Title of the chapter
+        filename:
+          type: string
+          description: Filename with path
+        purpose:
+          type: string
+          description: Purpose of the chapter
+        topics:
+          type: array
+          items:
+            type: string
+          description: List of topics covered
+        content:
+          type: string
+          description: Markdown content of the chapter
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+        wordCount:
+          type: integer
+          description: Word count for the chapter
+        readabilityLevel:
+          type: string
+          description: Readability level of the chapter
+        connectsToModule1:
+          type: boolean
+          description: Whether the chapter connects to Module 1 concepts
+        preparesForModule3:
+          type: boolean
+          description: Whether the chapter prepares for Module 3 concepts
+      required:
+        - id
+        - title
+        - filename
+        - content
+        - citations
+
+    Citation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the citation
+        type:
+          type: string
+          enum: [journal, book, conference, website, documentation]
+          description: Type of source
+        authors:
+          type: array
+          items:
+            type: string
+          description: List of author names
+        title:
+          type: string
+          description: Title of the publication
+        journal:
+          type: string
+          description: Journal or publisher name
+        year:
+          type: integer
+          description: Publication year
+        doi:
+          type: string
+          description: Digital object identifier
+        url:
+          type: string
+          description: Source URL
+        accessDate:
+          type: string
+          format: date
+          description: Date source was accessed
+        apaFormatted:
+          type: string
+          description: APA-formatted citation string
+      required:
+        - id
+        - type
+        - title
+        - apaFormatted

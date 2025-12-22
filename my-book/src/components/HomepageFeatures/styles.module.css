@@ -1,0 +1,20 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 180px;
+  width: 180px;
+  filter: drop-shadow(0 0 10px #00fff0);
+}
+
+.featureImage {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 12px #00fff0);
+}

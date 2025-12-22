@@ -1,0 +1,287 @@
+# Documentation API Contract for Physical AI & Humanoid Robotics Book
+
+# This contract defines the expected structure and metadata for book content
+# to ensure consistency and compatibility with the RAG system
+
+openapi: 3.0.0
+info:
+  title: Physical AI & Humanoid Robotics Book Content API
+  description: API contract for book content structure and metadata
+  version: 1.0.0
+
+paths:
+  /book:
+    get:
+      summary: Get book metadata
+      responses:
+        '200':
+          description: Book metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+
+  /book/modules:
+    get:
+      summary: Get list of all modules
+      responses:
+        '200':
+          description: List of modules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Module'
+
+  /book/modules/{moduleId}:
+    get:
+      summary: Get module details
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Module identifier
+      responses:
+        '200':
+          description: Module details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+
+  /book/modules/{moduleId}/chapters:
+    get:
+      summary: Get chapters for a module
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Module identifier
+      responses:
+        '200':
+          description: List of chapters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chapter'
+
+  /book/modules/{moduleId}/chapters/{chapterId}:
+    get:
+      summary: Get chapter content
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Module identifier
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Chapter identifier
+      responses:
+        '200':
+          description: Chapter content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the book
+        title:
+          type: string
+          description: Title of the book
+        description:
+          type: string
+          description: Brief description of the book
+        wordCount:
+          type: integer
+          description: Total word count of the book
+        readabilityLevel:
+          type: string
+          description: Target readability level (e.g., "Grade 10-12")
+        citationStyle:
+          type: string
+          description: Citation style used (e.g., "APA 7th Edition")
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Module'
+        totalSources:
+          type: integer
+          description: Total number of sources cited in the book
+        peerReviewedSources:
+          type: integer
+          description: Number of peer-reviewed sources
+      required:
+        - id
+        - title
+        - description
+
+    Module:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the module
+        title:
+          type: string
+          description: Title of the module
+        description:
+          type: string
+          description: Brief description of the module
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: List of learning objectives
+        chapters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chapter'
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: Prerequisite knowledge requirements
+        targetAudience:
+          type: string
+          description: Intended reader profile
+        wordCount:
+          type: integer
+          description: Total word count for the module
+      required:
+        - id
+        - title
+        - description
+        - chapters
+
+    Chapter:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        title:
+          type: string
+          description: Title of the chapter
+        purpose:
+          type: string
+          description: Purpose of the chapter
+        topics:
+          type: array
+          items:
+            type: string
+          description: List of topics covered
+        constraints:
+          type: array
+          items:
+            type: string
+          description: Content limitations or exclusions
+        content:
+          type: string
+          description: Markdown content of the chapter
+        figures:
+          type: array
+          items:
+            $ref: '#/components/schemas/Figure'
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+        wordCount:
+          type: integer
+          description: Word count for the chapter
+        readabilityLevel:
+          type: string
+          description: Readability level of the chapter
+      required:
+        - id
+        - title
+        - content
+        - citations
+
+    Citation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the citation
+        type:
+          type: string
+          enum: [journal, book, conference, website, arxiv]
+          description: Type of source
+        authors:
+          type: array
+          items:
+            type: string
+          description: List of author names
+        title:
+          type: string
+          description: Title of the publication
+        journal:
+          type: string
+          description: Journal or publisher name
+        year:
+          type: integer
+          description: Publication year
+        doi:
+          type: string
+          description: Digital object identifier
+        url:
+          type: string
+          description: Source URL
+        accessDate:
+          type: string
+          format: date
+          description: Date source was accessed
+        apaFormatted:
+          type: string
+          description: APA-formatted citation string
+      required:
+        - id
+        - type
+        - title
+        - apaFormatted
+
+    Figure:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the figure
+        title:
+          type: string
+          description: Figure title or caption
+        description:
+          type: string
+          description: Brief description of content
+        filePath:
+          type: string
+          description: Relative path to image file
+        altText:
+          type: string
+          description: Alternative text for accessibility
+        source:
+          type: string
+          description: Source attribution if applicable
+      required:
+        - id
+        - title
+        - filePath
