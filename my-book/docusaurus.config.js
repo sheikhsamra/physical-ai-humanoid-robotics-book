@@ -12,7 +12,7 @@ const config = {
   },
 
   url: 'https://your-docusaurus-site.example.com',
-  baseUrl: '/physical-ai-humanoid-robotics-book/',
+  baseUrl: '/',
 
   organizationName: 'Specify', 
   projectName: 'physical-ai-humanoid-robotics-book', 
