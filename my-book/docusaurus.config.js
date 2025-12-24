@@ -11,7 +11,7 @@ const config = {
     v4: true,
   },
 
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://physical-ai-humanoid-robotics-book-wine.vercel.app/',
   baseUrl: '/',
 
   organizationName: 'Specify', 
