@@ -12,7 +12,7 @@ const config = {
   },
 
   url: 'https://physical-ai-humanoid-robotics-book-wine.vercel.app/',
-  baseUrl: '/',
+  baseUrl: '/physical-ai-humanoid-robotics-book/',
 
   organizationName: 'Specify', 
   projectName: 'physical-ai-humanoid-robotics-book', 
