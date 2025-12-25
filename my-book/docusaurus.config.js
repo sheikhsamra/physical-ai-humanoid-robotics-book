@@ -12,7 +12,7 @@ const config = {
   },
 
   url: 'https://physical-ai-humanoid-robotics-book-wine.vercel.app/',
-  baseUrl: '/physical-ai-humanoid-robotics-book/',
+  baseUrl: '/',
 
   organizationName: 'sheikhsamra',
   projectName: 'physical-ai-humanoid-robotics-book', 
@@ -31,8 +31,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl:'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         // BLOG REMOVED HERE: Setting blog to false disables the plugin
         blog: false, 
