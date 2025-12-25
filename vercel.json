@@ -5,17 +5,17 @@
   },
   "builds": [
     {
-      "src": "package.json",
+      "src": "my-book/package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "build"
       }
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "my-book/build/index.html"
     }
   ]
 }
