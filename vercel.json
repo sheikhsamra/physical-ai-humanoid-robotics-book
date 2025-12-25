@@ -3,19 +3,5 @@
     "enabled": true,
     "autoAlias": true
   },
-  "builds": [
-    {
-      "src": "my-book/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+  "outputDirectory": "my-book/build"
 }
