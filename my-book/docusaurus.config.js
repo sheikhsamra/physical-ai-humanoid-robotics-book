@@ -14,7 +14,7 @@ const config = {
   url: 'https://physical-ai-humanoid-robotics-book-wine.vercel.app/',
   baseUrl: '/physical-ai-humanoid-robotics-book/',
 
-  organizationName: 'Specify', 
+  organizationName: 'sheikhsamra',
   projectName: 'physical-ai-humanoid-robotics-book', 
 
   onBrokenLinks: 'warn',
