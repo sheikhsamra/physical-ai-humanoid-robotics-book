@@ -1,0 +1,21 @@
+{
+  "github": {
+    "enabled": true,
+    "autoAlias": true
+  },
+  "builds": [
+    {
+      "src": "my-book/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "my-book/build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/my-book/build/index.html"
+    }
+  ]
+}
