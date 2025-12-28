@@ -1,0 +1,155 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API
+  description: API for interacting with the RAG agent in the Physical AI and Humanoid Robotics book
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+paths:
+  /chat:
+    post:
+      summary: Send a query to the RAG agent
+      description: Processes a user query using the RAG agent and returns a contextual response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Successful response from the RAG agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '400':
+          description: Bad request - invalid query format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - chat
+components:
+  schemas:
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The user's question or input text
+          example: "What is Physical AI?"
+          maxLength: 2000
+        sessionId:
+          type: string
+          description: Identifier for conversation tracking
+          example: "550e8400-e29b-41d4-a716-446655440000"
+          pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    AgentResponse:
+      type: object
+      required:
+        - content
+        - query
+        - agentId
+        - timestamp
+      properties:
+        content:
+          type: string
+          description: The agent's response text
+          example: "Physical AI is a field that bridges artificial intelligence with embodied systems..."
+        sources:
+          type: array
+          description: List of source documents used in generating the response
+          items:
+            $ref: '#/components/schemas/Source'
+          maxItems: 10
+        query:
+          type: string
+          description: The original query that generated this response
+          example: "What is Physical AI?"
+        agentId:
+          type: string
+          description: ID of the agent that generated the response
+          example: "rag-agent-1"
+        timestamp:
+          type: string
+          format: date-time
+          description: When the response was generated
+          example: "2025-12-27T10:00:00Z"
+    Source:
+      type: object
+      required:
+        - id
+        - content
+        - source_url
+        - module
+        - section
+        - score
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the source
+          example: "doc-001"
+        content:
+          type: string
+          description: The content of the source
+          example: "Physical AI represents a paradigm shift toward intelligence that is embodied..."
+          maxLength: 10000
+        source_url:
+          type: string
+          format: uri
+          description: URL where the source can be found
+          example: "https://physical-ai-humanoid-robotics-book-sandy.vercel.app/introduction"
+        module:
+          type: string
+          description: Module or section of the book this source belongs to
+          example: "introduction"
+        section:
+          type: string
+          description: Specific section within the module
+          example: "definition"
+        score:
+          type: number
+          minimum: 0.0
+          maximum: 1.0
+          description: Relevance score between 0.0 and 1.0
+          example: 0.87
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - code
+        - timestamp
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+          example: "The query is too long. Maximum 2000 characters allowed."
+        code:
+          type: string
+          description: Machine-readable error code
+          example: "QUERY_TOO_LONG"
+        details:
+          type: object
+          description: Additional error details
+          example:
+            maxLength: 2000
+            actualLength: 2500
+        timestamp:
+          type: string
+          format: date-time
+          description: When the error occurred
+          example: "2025-12-27T10:00:00Z"
+tags:
+  - name: chat
+    description: Chatbot interaction endpoints

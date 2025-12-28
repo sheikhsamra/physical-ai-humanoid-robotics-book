@@ -14,7 +14,7 @@ function HomepageHeader() {
       <div className="container">
         {/* Naya wrapper div jo text aur image ko handle karega */}
         <div className={styles.heroContent}>
-          
+
           {/* Left Side: Text Content */}
           <div className={styles.heroText}>
             <Heading as="h1" className="hero__title">
@@ -40,9 +40,9 @@ function HomepageHeader() {
 
           {/* Right Side: Image */}
           <div className={styles.heroImage}>
-            <img 
+            <img
               src="img/hero.png" // Yahan apni image ka path likhein (static/img folder me rakhein)
-              alt="Hero Banner" 
+              alt="Hero Banner"
               className={styles.bannerImg}
             />
           </div>
