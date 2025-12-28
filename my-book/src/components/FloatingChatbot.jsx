@@ -32,7 +32,7 @@ const FloatingChatbot = () => {
 
     try {
       // Call the backend API
-      const response = await fetch(`${process.env.NEXT_PUBLIC_CHAT_API_URL}/chat`, {
+      const response = await fetch('https://samiwebdev03-book-backend-deploy.hf.space/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
