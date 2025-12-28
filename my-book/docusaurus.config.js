@@ -11,7 +11,7 @@ const config = {
     v4: true,
   },
 
-  url: 'https://physical-ai-humanoid-robotics-book-sandy.vercel.app',
+  url: 'https://sm-physical-ai-humanoid-robotics-bo.vercel.app/',
   baseUrl: '/',
 
   organizationName: 'sheikhsamra',
